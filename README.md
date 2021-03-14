@@ -1,5 +1,5 @@
-Firmware for the WheelECU
-=========================
+Firmware for the CentrifugalFan ECU
+===================================
 
 The firmware uses DAVE CE to configure and generate code for the hardware
 abstraction. DAVE can be downloaded from Infineon's website, however it isn't
@@ -21,5 +21,5 @@ https://github.com/CodileAB/meddela
 Now run make to build:
 
 ```
-make -j4 NODE_ID=0x11
+make -j4
 ```
