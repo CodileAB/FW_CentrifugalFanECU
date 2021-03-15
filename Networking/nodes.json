@@ -1,0 +1,11 @@
+[
+    {
+        "name": "Fan",
+        "rx": [
+            "FanControl"
+        ],
+        "tx":  [
+            "FanStatus"
+        ]
+    }
+]
