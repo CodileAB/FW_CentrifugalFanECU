@@ -65,7 +65,7 @@
 							</tool>
 							<tool id="com.ifx.xmc4000.appRelease.linker.1847955689" name="ARM-GCC C Linker" superClass="com.ifx.xmc4000.appRelease.linker">
 								<option id="com.ifx.xmc4000.appLinker.option.misc.fpu.1018696106" name="Fpu (-mfpu)" superClass="com.ifx.xmc4000.appLinker.option.misc.fpu" value="No floating point hardware available" valueType="enumerated"/>
-								<option id="com.ifx.xmc4000.appLinker.option.nosys.specs.1478808759" superClass="com.ifx.xmc4000.appLinker.option.nosys.specs" value="true" valueType="boolean"/>
+								<option id="com.ifx.xmc4000.appLinker.option.nosys.specs.1478808759" name="Provide default newlib system calls (-specs=nosys.specs)" superClass="com.ifx.xmc4000.appLinker.option.nosys.specs" value="true" valueType="boolean"/>
 								<inputType id="com.ifx.xmc4000.appLinker.inputType.163832168" name="ARM-GCC for XMC Linker Input Type" superClass="com.ifx.xmc4000.appLinker.inputType">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
@@ -73,7 +73,7 @@
 							</tool>
 							<tool id="com.ifx.xmc4000.appRelease.cpplinker.1182000138" name="ARM-GCC C++ Linker" superClass="com.ifx.xmc4000.appRelease.cpplinker">
 								<option id="com.ifx.xmc4000.appCppLinker.option.misc.fpu.616632183" name="Fpu (-mfpu)" superClass="com.ifx.xmc4000.appCppLinker.option.misc.fpu" value="No floating point hardware available" valueType="enumerated"/>
-								<option id="com.ifx.xmc4000.appCppLinker.option.nosys.specs.1523905626" superClass="com.ifx.xmc4000.appCppLinker.option.nosys.specs" value="true" valueType="boolean"/>
+								<option id="com.ifx.xmc4000.appCppLinker.option.nosys.specs.1523905626" name="Provide default newlib system calls (-specs=nosys.specs)" superClass="com.ifx.xmc4000.appCppLinker.option.nosys.specs" value="true" valueType="boolean"/>
 							</tool>
 							<tool id="com.ifx.xmc4000.libLinker.1565496720" name="ARM-GCC Archiver" superClass="com.ifx.xmc4000.libLinker"/>
 							<tool id="com.ifx.xmc4000.appRelease.createflash.1717992956" name="ARM-GCC Create Flash Image" superClass="com.ifx.xmc4000.appRelease.createflash"/>
@@ -152,7 +152,7 @@
 							</tool>
 							<tool id="com.ifx.xmc4000.appDebug.linker.1139852521" name="ARM-GCC C Linker" superClass="com.ifx.xmc4000.appDebug.linker">
 								<option id="com.ifx.xmc4000.appLinker.option.misc.fpu.1101576247" name="Fpu (-mfpu)" superClass="com.ifx.xmc4000.appLinker.option.misc.fpu" value="No floating point hardware available" valueType="enumerated"/>
-								<option id="com.ifx.xmc4000.appLinker.option.nosys.specs.924438821" superClass="com.ifx.xmc4000.appLinker.option.nosys.specs" value="true" valueType="boolean"/>
+								<option id="com.ifx.xmc4000.appLinker.option.nosys.specs.924438821" name="Provide default newlib system calls (-specs=nosys.specs)" superClass="com.ifx.xmc4000.appLinker.option.nosys.specs" value="true" valueType="boolean"/>
 								<inputType id="com.ifx.xmc4000.appLinker.inputType.313637645" name="ARM-GCC for XMC Linker Input Type" superClass="com.ifx.xmc4000.appLinker.inputType">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
@@ -160,7 +160,7 @@
 							</tool>
 							<tool id="com.ifx.xmc4000.appDebug.cpplinker.1992073447" name="ARM-GCC C++ Linker" superClass="com.ifx.xmc4000.appDebug.cpplinker">
 								<option id="com.ifx.xmc4000.appCppLinker.option.misc.fpu.797913363" name="Fpu (-mfpu)" superClass="com.ifx.xmc4000.appCppLinker.option.misc.fpu" value="No floating point hardware available" valueType="enumerated"/>
-								<option id="com.ifx.xmc4000.appCppLinker.option.nosys.specs.1553618937" superClass="com.ifx.xmc4000.appCppLinker.option.nosys.specs" value="true" valueType="boolean"/>
+								<option id="com.ifx.xmc4000.appCppLinker.option.nosys.specs.1553618937" name="Provide default newlib system calls (-specs=nosys.specs)" superClass="com.ifx.xmc4000.appCppLinker.option.nosys.specs" value="true" valueType="boolean"/>
 							</tool>
 							<tool id="com.ifx.xmc4000.libLinker.675599271" name="ARM-GCC Archiver" superClass="com.ifx.xmc4000.libLinker"/>
 							<tool id="com.ifx.xmc4000.appDebug.createflash.1458504318" name="ARM-GCC Create Flash Image" superClass="com.ifx.xmc4000.appDebug.createflash"/>
@@ -199,4 +199,5 @@
 	<storageModule moduleId="org.eclipse.cdt.core.language.mapping">
 		<project-mappings/>
 	</storageModule>
+	<storageModule moduleId="refreshScope"/>
 </cproject>
