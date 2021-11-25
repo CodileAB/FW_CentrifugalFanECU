@@ -10,7 +10,7 @@ OBJDUMP := $(TOOLCHAIN_PATH)/arm-none-eabi-objdump
 RM := rm -f
 MEDDELA := python3 -m meddela
 
-APP_NAME := WheelECU
+APP_NAME := FanECU
 
 MAP_FILE := $(APP_NAME).map
 LINKER_SCRIPT := linker_script.ld
