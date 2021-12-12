@@ -99,7 +99,6 @@
 
 
 
-
  
 
 /**********************************************************************************************************************
@@ -216,19 +215,19 @@ XMC_CAN_MO_t  CAN_NODE_0_LMO_01 = {
 
   .can_priority     = XMC_CAN_ARBITRATION_MODE_IDE_DIR_BASED_PRIO_2,
 
-  .can_identifier   = 0x10000aU, 
+  .can_identifier   = 0x7ffU, 
 
-  .can_id_mask      = 0x100000U,
+  .can_id_mask      = 0x7ffU,
 
   .can_ide_mask     = 1U,
 
-  .can_mo_ptr       = (CAN_MO_TypeDef*)CAN_MO19,
+  .can_mo_ptr       = (CAN_MO_TypeDef*)CAN_MO17,
 
   .can_data_length  = 8U,
 
-  .can_data[1]      = 0xaaaaaaaaU,
+  .can_data[1]      = 0x0U,
 
-  .can_data[0]      = 0x55555555U 
+  .can_data[0]      = 0x0U 
 
 };
 
@@ -238,7 +237,7 @@ const CAN_NODE_LMO_t CAN_NODE_0_LMO_01_Config = {
 
   .mo_ptr     = (XMC_CAN_MO_t*)&CAN_NODE_0_LMO_01,     
 
-  .number  = 19U,   
+  .number  = 17U,   
 
   .tx_sr   = 0U,
 
@@ -260,13 +259,13 @@ XMC_CAN_MO_t  CAN_NODE_0_LMO_02 = {
 
   .can_priority     = XMC_CAN_ARBITRATION_MODE_IDE_DIR_BASED_PRIO_2,
 
-  .can_identifier   = 0x200129U, 
+  .can_identifier   = 0x7ffU, 
 
-  .can_id_mask      = 0x200000U,
+  .can_id_mask      = 0x7ffU,
 
   .can_ide_mask     = 1U,
 
-  .can_mo_ptr       = (CAN_MO_TypeDef*)CAN_MO17,
+  .can_mo_ptr       = (CAN_MO_TypeDef*)CAN_MO19,
 
   .can_data_length  = 8U,
 
@@ -282,9 +281,9 @@ const CAN_NODE_LMO_t CAN_NODE_0_LMO_02_Config = {
 
   .mo_ptr     = (XMC_CAN_MO_t*)&CAN_NODE_0_LMO_02,     
 
-  .number  = 17U,   
+  .number  = 19U,   
 
-  .tx_sr   = 1U,
+  .tx_sr   = 2U,
 
   .rx_sr   = 0U,
 
