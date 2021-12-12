@@ -1,17 +1,18 @@
-diff --git a/Dave/Generated/CAN_NODE/can_node_conf.c b/Dave/Generated/CAN_NODE/can_node_conf.c
-index ce1a2e7..4e2c3a2 100644
---- a/Dave/Generated/CAN_NODE/can_node_conf.c
-+++ b/Dave/Generated/CAN_NODE/can_node_conf.c
-@@ -93,6 +93,8 @@
+diff --git b/Dave/Generated/CAN_NODE/can_node_conf.c a/Dave/Generated/CAN_NODE/can_node_conf.c
+index da15b16..9e9088a 100644
+--- b/Dave/Generated/CAN_NODE/can_node_conf.c
++++ a/Dave/Generated/CAN_NODE/can_node_conf.c
+@@ -93,7 +93,8 @@
   **********************************************************************************************************************/
  
  #include "can_node.h"
+-
 +#include "Can_Config.h"
 +#include "Can_Config_XMC1400.h"
  
  
  
-@@ -318,75 +320,11 @@ const CAN_NODE_t  CAN_NODE_0 = {
+@@ -318,75 +319,11 @@ const CAN_NODE_t  CAN_NODE_0 = {
  
    .node_sr_ptr       = (CAN_NODE_SR_t*)&CAN_NODE_0_sr,
  
