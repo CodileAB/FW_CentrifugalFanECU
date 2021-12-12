@@ -4,66 +4,70 @@
 #include "Tasks/tasks.h"
 #include "Tasks/MotorManager.h"
 #include "Tasks/MessageManager.h"
-#include "CAN_Router.h"
+#include "CAN_Config.h"
 
-void Time_Handler(void)
+
+void Handle_FanControl_Received(FanControl_t msg, uint8_t from_node_id, uint8_t to_node_id)
 {
-	ADC_MEASUREMENT_StartConversion(&ADC_MEASUREMENT_Temperature);
+	MotorDirection_t motor_direction;
+	uint8_t motor_duty_cycle;
+
+	if (NODE_ID != to_node_id) {
+		return;
+	}
+
+	motor_duty_cycle = msg.DutyCycle;
+
+	switch (msg.Direction) {
+	case 2U:
+		motor_direction = DIR_FORWARD;
+		break;
+	case 1U:
+		motor_direction = DIR_BACKWARD;
+		break;
+	case 0U:
+	default:
+		motor_direction = DIR_NONE;
+		break;
+	}
+
+	if (DIR_NONE == motor_direction) {
+		MotorManager_Stop();
+	} else {
+		MotorManager_SetParameters(motor_duty_cycle, motor_direction, msg.Revolutions);
+	}
 }
 
-void EventHandler_CanNode_0()
+void Task_Main(void *pvParameters)
 {
-	// Check transmit pending status in LMO_01
-	uint32_t status = 0x00U;
+	FanStatus_t fan_status;
+	MotorStatus_t motor_status;
+	MotorParameters_t requested_motor_params;
+	MotorDiagnosis_t motor_diag;
+	uint16_t rpm, temperature;
 
-	// Check for Node error
-	status = CAN_NODE_GetStatus(&CAN_NODE_0);
-	if (status & XMC_CAN_NODE_STATUS_ALERT_WARNING)
-	{
-		// Clear the flag
-		CAN_NODE_DisableEvent(&CAN_NODE_0, XMC_CAN_NODE_EVENT_ALERT);
-	}
+	while (1U) {
+		MotorManager_GetStatus(&motor_status);
+		MotorManager_GetDiagnosis(&motor_diag);
+		MotorManager_GetTemperature(&temperature);
+		MotorManager_GetRPM(&rpm);
+		MotorManager_GetRequestedParameters(&requested_motor_params);
 
-	status = CAN_NODE_MO_GetStatus((void *) CAN_NODE_0.lmobj_ptr[1]);
-	if (status & XMC_CAN_MO_STATUS_TX_PENDING)
-	{
-		// Clear the flag
-		CAN_NODE_MO_ClearStatus((void *)CAN_NODE_0.lmobj_ptr[1], XMC_CAN_MO_RESET_STATUS_TX_PENDING);
-	}
+		fan_status.RevolutionsPerMinute = rpm;
+		fan_status.DutyCycle = requested_motor_params.duty_cycle;
+		fan_status.Direction = requested_motor_params.direction;
+		fan_status.Temperature = (uint8_t) temperature;
+		fan_status.Status = motor_status;
 
-	// Check receive pending status
-	for (uint8_t i = 0; i < CAN_NODE_0.mo_count; i++) {
-		CAN_NODE_LMO_t *can_obj = CAN_NODE_0.lmobj_ptr[i];
-		XMC_CAN_MO_t *mo = can_obj->mo_ptr;
+		fan_status.OvertemperatureShutdown = motor_diag.OvertemperatureShutdown;
+		fan_status.CurrentLimitation = motor_diag.CurrentLimitation;
+		fan_status.ShortCircuitCode = motor_diag.ShortCircuitCode;
+		fan_status.OpenLoad = motor_diag.OpenLoad;
+		fan_status.Undervoltage = motor_diag.Undervoltage;
 
-		if (XMC_CAN_MO_TYPE_RECMSGOBJ != mo->can_mo_type) {
-			continue;
-		}
+		MessageManager_Send_FanStatus(&fan_status, 0x00);
 
-		status = CAN_NODE_MO_GetStatus((void *) can_obj);
-		if (status & XMC_CAN_MO_STATUS_RX_PENDING) { //XMC_CAN_MO_STATUS_NEW_DATA
-			// Clear the flag
-			CAN_NODE_MO_ClearStatus((void *) can_obj, XMC_CAN_MO_RESET_STATUS_RX_PENDING);
-
-			// Read the received Message object and stores the received data in the MO structure.
-			CAN_NODE_MO_Receive((void *) can_obj);
-
-			Message_t message;
-			uint8_t *can_data = mo->can_data_byte;
-
-			message.id = mo->can_identifier;
-
-			message.data[0] = can_data[0];
-			message.data[1] = can_data[1];
-			message.data[2] = can_data[2];
-			message.data[3] = can_data[3];
-			message.data[4] = can_data[4];
-			message.data[5] = can_data[5];
-			message.data[6] = can_data[6];
-			message.data[7] = can_data[7];
-
-			MessageManager_PushMessage(&message);
-		}
+		vTaskDelay(500 / portTICK_PERIOD_MS);
 	}
 }
 
@@ -97,6 +101,7 @@ int main(void)
 	/* Initiate tasks */
 	MotorManager_Init();
 	MessageManager_Init();
+	xTaskCreate(Task_Main, "Task_Main", 40U, NULL, (tskIDLE_PRIORITY + 2), NULL);
 
 	vTaskStartScheduler();
 

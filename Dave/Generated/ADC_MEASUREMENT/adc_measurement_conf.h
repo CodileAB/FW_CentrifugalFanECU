@@ -101,13 +101,9 @@
 
 
 #define ADC_MEASUREMENT_MAXCHANNELS (1U)
-
-#define MotorManager_TemperatureHandler IRQ_Hdlr_15
 #define ADC_MEASUREMENT_Channel_A (ADC_MEASUREMENT_Channel_A_handle)
 #define ADC_MEASUREMENT_Channel_A_RES (VADC_G1->RES[10])
 
-
-#define ADC_MEASUREMENT_CPU_1X
 #define ADC_MEASUREMENT_ICLASS_NUM (0U)
 #define ADC_MEASUREMENT_MAJOR_VERSION (4U) /**< Major version number of ADC_MEASUREMENT APP*/
 #define ADC_MEASUREMENT_MINOR_VERSION (1U) /**< Minor version number of ADC_MEASUREMENT APP*/

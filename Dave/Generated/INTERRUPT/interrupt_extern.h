@@ -56,17 +56,25 @@
  * MACROS
  **********************************************************************************************************************/
 	
-#define EventHandler_CanNode_0 IRQ_Hdlr_3
+#define CAN_NODE_0_TransmitHandler IRQ_Hdlr_5
 		
 #define MotorManager_AutoStopHandler IRQ_Hdlr_21
+		
+#define CAN_NODE_0_ReceiveHandler IRQ_Hdlr_3
+		
+#define CAN_NODE_0_ErrorHandler IRQ_Hdlr_4
 		
 /***********************************************************************************************************************
  * EXTERN DECLARATIONS
 ***********************************************************************************************************************/
 	
-extern const INTERRUPT_t INTERRUPT_0; 
+extern const INTERRUPT_t INTERRUPT_CAN_NODE_0_Transmit; 
 	
 extern const INTERRUPT_t INTERRUPT_AutoStop; 
+	
+extern const INTERRUPT_t INTERRUPT_CAN_NODE_0_Receive; 
+	
+extern const INTERRUPT_t INTERRUPT_CAN_NODE_0_Error; 
 	
 #endif  /* INTERRUPT_EXTERN_H */
 

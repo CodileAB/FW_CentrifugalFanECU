@@ -50,7 +50,6 @@ BaseType_t MotorManager_Stop(void);
 BaseType_t MotorManager_NotifyError(void);
 
 // Interrupt handlers
-void MotorManager_TemperatureHandler(void);
 void MotorManager_AutoStopHandler(void);
 
 #endif /* TASKS_MOTORMANAGER_H_ */

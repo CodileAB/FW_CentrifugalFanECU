@@ -71,7 +71,6 @@ DAVE_MODULES := \
 	PWM \
 	INTERRUPT \
 	COUNTER \
-	RTC \
 	PRNG_CONFIG
 
 LIB_MODULES := \
@@ -80,12 +79,12 @@ LIB_MODULES := \
 
 MEDDELA_SOURCE_FILES := \
 	CAN_Config_XMC1400.c \
-	Can_Router.c
+	Tasks/MessageManager.c
 
 MEDDELA_HEADER_FILES := \
 	CAN_Config_XMC1400.h \
 	CAN_Config.h \
-	Can_Router.h
+	Tasks/MessageManager.h
 
 .PHONY: all clean cleanall
 
@@ -157,6 +156,5 @@ cleanall: clean
 	-$(RM) $(MEDDELA_SOURCE_FILES) $(MEDDELA_HEADER_FILES)
 
 patch:
-	@git apply FreeRTOS_HeapSourceRemoval.patch
 	@git apply can_node_conf.patch
 

@@ -51,7 +51,6 @@ MotorParameters_t target_params;
 MotorDiagnosis_t motor_diag;
 
 uint16_t actual_rpm = 0U;
-uint16_t temperature = 0U;
 
 /* Make sure to take the xStatusSemaphore before calling this function */
 void set_motor_direction(MotorDirection_t direction)
@@ -120,19 +119,6 @@ uint8_t get_driver_diag()
 	return spi_read_data;
 }
 
-void MotorManager_TemperatureHandler(void)
-{
-	XMC_VADC_RESULT_SIZE_t result;
-	uint32_t millivolt;
-
-	result = ADC_MEASUREMENT_GetResult(&ADC_MEASUREMENT_Channel_A);
-	millivolt = (48000UL / 4096UL) * result;
-
-	temperature = millivolt / 100UL;
-
-    return;
-}
-
 void MotorManager_AutoStopHandler(void)
 {
 	MotorManager_Stop();
@@ -178,7 +164,13 @@ BaseType_t MotorManager_GetRequestedParameters(MotorParameters_t *params)
 
 BaseType_t MotorManager_GetTemperature(uint16_t *temp)
 {
-	*temp = temperature;
+	XMC_VADC_RESULT_SIZE_t result;
+	uint32_t millivolt;
+
+	result = ADC_MEASUREMENT_GetResult(&ADC_MEASUREMENT_Channel_A);
+	millivolt = (48000UL / 4096UL) * result;
+
+	*temp = millivolt / 100UL;
 
 	return pdTRUE;
 }

@@ -159,12 +159,6 @@ ADC_MEASUREMENT_CHANNEL_ARRAY_t ADC_MEASUREMENT_channel_array=
 	}
 };
 
-/* Background request source interrupt handler : End of Measurement Interrupt configuration structure*/
-const ADC_MEASUREMENT_ISR_t backgnd_rs_intr_handle=
-{
-  .node_id      = 15U,
-  .priority    	= 3U 
-};
 
 /* LLD Background Scan Init Structure */
 const XMC_VADC_BACKGROUND_CONFIG_t backgnd_config =
@@ -176,8 +170,8 @@ const XMC_VADC_BACKGROUND_CONFIG_t backgnd_config =
   .gate_signal    	 = (uint32_t) XMC_VADC_REQ_GT_A,			 /*If Gating needed then this denotes the Gating signal*/
   .timer_mode        = (uint32_t) 0,							 /*Timer Mode Disabled */
   .external_trigger  = (uint32_t) 0,                               /*Trigger is Disabled*/
-  .req_src_interrupt = (uint32_t) 1,                              /*Background Request source interrupt Enabled*/
-  .enable_auto_scan  = (uint32_t) 0,
+  .req_src_interrupt = (uint32_t) 0,                              /*Background Request source interrupt Disabled*/
+  .enable_auto_scan  = (uint32_t) 1,
   .load_mode         = (uint32_t) XMC_VADC_SCAN_LOAD_OVERWRITE
 };
 
@@ -185,11 +179,11 @@ ADC_MEASUREMENT_t ADC_MEASUREMENT_Temperature=
 {
   .array		 	     = (ADC_MEASUREMENT_CHANNEL_ARRAY_t*) &ADC_MEASUREMENT_channel_array,
   .backgnd_config_handle = (XMC_VADC_BACKGROUND_CONFIG_t*) &backgnd_config,
-  .req_src_intr_handle	 = (ADC_MEASUREMENT_ISR_t *) &backgnd_rs_intr_handle,
+  .req_src_intr_handle	 = (ADC_MEASUREMENT_ISR_t *) NULL,
   .iclass_config_handle  = ( XMC_VADC_GLOBAL_CLASS_t *) &global_iclass_config,
   .srv_req_node          = XMC_VADC_SR_SHARED_SR0,
   .global_handle    	 = (GLOBAL_ADC_t *) &GLOBAL_ADC_0,
-  .start_conversion		 = (bool) false,
+  .start_conversion		 = (bool) true,
   .mux_config			 = NULL,
   .init_state 			 = ADC_MEASUREMENT_STATUS_UNINITIALIZED
 };

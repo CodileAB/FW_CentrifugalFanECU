@@ -73,8 +73,8 @@ DAVE_STATUS_t DAVE_Init(void)
    } 
   if (init_status == DAVE_STATUS_SUCCESS)
   {
-	 /**  Initialization of INTERRUPT APP instance INTERRUPT_0 */
-	 init_status = (DAVE_STATUS_t)INTERRUPT_Init(&INTERRUPT_0); 
+	 /**  Initialization of INTERRUPT APP instance INTERRUPT_CAN_NODE_0_Transmit */
+	 init_status = (DAVE_STATUS_t)INTERRUPT_Init(&INTERRUPT_CAN_NODE_0_Transmit); 
    } 
   if (init_status == DAVE_STATUS_SUCCESS)
   {
@@ -98,8 +98,8 @@ DAVE_STATUS_t DAVE_Init(void)
    } 
   if (init_status == DAVE_STATUS_SUCCESS)
   {
-	 /**  Initialization of RTC APP instance RTC_0 */
-	 init_status = (DAVE_STATUS_t)RTC_Init(&RTC_0); 
+	 /**  Initialization of GLOBAL_SCU_XMC1 APP instance GLOBAL_SCU_XMC1_0 */
+	 init_status = (DAVE_STATUS_t)GLOBAL_SCU_XMC1_Init(&GLOBAL_SCU_XMC1_0); 
    } 
   if (init_status == DAVE_STATUS_SUCCESS)
   {
@@ -135,6 +135,16 @@ DAVE_STATUS_t DAVE_Init(void)
   {
 	 /**  Initialization of ADC_MEASUREMENT APP instance ADC_MEASUREMENT_Temperature */
 	 init_status = (DAVE_STATUS_t)ADC_MEASUREMENT_Init(&ADC_MEASUREMENT_Temperature); 
+   } 
+  if (init_status == DAVE_STATUS_SUCCESS)
+  {
+	 /**  Initialization of INTERRUPT APP instance INTERRUPT_CAN_NODE_0_Receive */
+	 init_status = (DAVE_STATUS_t)INTERRUPT_Init(&INTERRUPT_CAN_NODE_0_Receive); 
+   } 
+  if (init_status == DAVE_STATUS_SUCCESS)
+  {
+	 /**  Initialization of INTERRUPT APP instance INTERRUPT_CAN_NODE_0_Error */
+	 init_status = (DAVE_STATUS_t)INTERRUPT_Init(&INTERRUPT_CAN_NODE_0_Error); 
    }  
   return init_status;
 } /**  End of function DAVE_Init */

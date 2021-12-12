@@ -88,10 +88,10 @@
     <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/can/can_0.dd#//@provided.0"/>
   </hwResources>
   <hwResources name="MO_1" URI="http://resources/4.1.14/app/CAN_NODE/0/hwres_can_mobj1" resourceGroupUri="peripheral/can/*/mo/*" mResGrpUri="peripheral/can/*/mo/*">
-    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/can/can_0.dd#//@provided.8"/>
+    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/can/can_0.dd#//@provided.13"/>
   </hwResources>
   <hwResources name="MO_2" URI="http://resources/4.1.14/app/CAN_NODE/0/hwres_can_mobj2" resourceGroupUri="resources/14.0.0/peripheral/can/0/mo/19" mResGrpUri="peripheral/can/*/mo/*">
-    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/can/can_0.dd#//@provided.13"/>
+    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/can/can_0.dd#//@provided.8"/>
   </hwResources>
   <hwResources name="MO_3" URI="http://resources/4.1.14/app/CAN_NODE/0/hwres_can_mobj3" resourceGroupUri="" required="false" mResGrpUri="peripheral/can/*/mo/*"/>
   <hwResources name="MO_4" URI="http://resources/4.1.14/app/CAN_NODE/0/hwres_can_mobj4" resourceGroupUri="" required="false" mResGrpUri="peripheral/can/*/mo/*"/>
@@ -135,8 +135,16 @@
   <connections URI="http://resources/4.1.14/app/CAN_NODE/0/http://resources/4.1.14/app/CAN_NODE/0/__pin_vs_can_rxpin/http://resources/4.1.14/app/CAN_NODE/0/vs_can_rxpin" systemDefined="true" sourceSignal="CAN Receive Pin_signal" targetSignal="receive_pad" srcVirtualSignal="//@virtualSignals.72" targetVirtualSignal="//@virtualSignals.2"/>
   <connections URI="http://resources/4.1.14/app/CAN_NODE/0/http://resources/4.1.14/app/CAN_NODE/0/vs_can_txpin/http://resources/4.1.14/app/CAN_NODE/0/__pin_vs_can_txpin" systemDefined="true" sourceSignal="transmit_pad" targetSignal="CAN Transmit Pin_signal" srcVirtualSignal="//@virtualSignals.3" targetVirtualSignal="//@virtualSignals.73"/>
   <connections URI="http://resources/4.1.14/app/CAN_NODE/0/http://resources/4.1.14/app/CAN_NODE/0/__pin_vs_can_txpin/http://resources/4.1.14/app/CAN_NODE/0/vs_can_txpin" systemDefined="true" sourceSignal="CAN Transmit Pin_signal" targetSignal="transmit_pad" srcVirtualSignal="//@virtualSignals.73" targetVirtualSignal="//@virtualSignals.3"/>
-  <connections URI="http://resources/4.1.14/app/CAN_NODE/0/http://resources/4.1.14/app/CAN_NODE/0/vs_message1_rxinp/http://resources/4.0.8/app/INTERRUPT/0/vs_nvic_signal_in" sourceSignal="event_lmo_01_rxinp" targetSignal="sr_irq" srcVirtualSignal="//@virtualSignals.9">
+  <connections URI="http://resources/4.1.14/app/CAN_NODE/0/http://resources/4.1.14/app/CAN_NODE/0/vs_message1_rxinp/http://resources/4.0.8/app/INTERRUPT/2/vs_nvic_signal_in" sourceSignal="event_lmo_01_rxinp" targetSignal="sr_irq" srcVirtualSignal="//@virtualSignals.9">
+    <downwardMapList xsi:type="ResourceModel:VirtualSignal" href="../../INTERRUPT/v4_0_8/INTERRUPT_2.app#//@virtualSignals.0"/>
+    <targetVirtualSignal href="../../INTERRUPT/v4_0_8/INTERRUPT_2.app#//@virtualSignals.0"/>
+  </connections>
+  <connections URI="http://resources/4.1.14/app/CAN_NODE/0/http://resources/4.1.14/app/CAN_NODE/0/vs_message2_txinp/http://resources/4.0.8/app/INTERRUPT/0/vs_nvic_signal_in" sourceSignal="event_lmo_02_txinp" targetSignal="sr_irq" srcVirtualSignal="//@virtualSignals.10">
     <downwardMapList xsi:type="ResourceModel:VirtualSignal" href="../../INTERRUPT/v4_0_8/INTERRUPT_0.app#//@virtualSignals.0"/>
     <targetVirtualSignal href="../../INTERRUPT/v4_0_8/INTERRUPT_0.app#//@virtualSignals.0"/>
+  </connections>
+  <connections URI="http://resources/4.1.14/app/CAN_NODE/0/http://resources/4.1.14/app/CAN_NODE/0/vs_can_alinp/http://resources/4.0.8/app/INTERRUPT/3/vs_nvic_signal_in" sourceSignal="event_node_alert" targetSignal="sr_irq" srcVirtualSignal="//@virtualSignals.4">
+    <downwardMapList xsi:type="ResourceModel:VirtualSignal" href="../../INTERRUPT/v4_0_8/INTERRUPT_3.app#//@virtualSignals.0"/>
+    <targetVirtualSignal href="../../INTERRUPT/v4_0_8/INTERRUPT_3.app#//@virtualSignals.0"/>
   </connections>
 </ResourceModel:App>
